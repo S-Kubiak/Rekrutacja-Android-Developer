@@ -1,0 +1,60 @@
+package com.example.rekrutacjaredexperts.json;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.os.Environment;
+
+public class JsonManager {
+	
+	 public void readJson(){
+	    	// Reading text file from assets folder
+	    			StringBuffer sb = new StringBuffer();
+	    			BufferedReader br = null;
+	    			try {
+	    				
+	    				InputStream some = new FileInputStream(Environment.getExternalStorageDirectory().toString()+"/Download/test.json");
+	    				br = new BufferedReader(new InputStreamReader(some));
+	    				String temp;
+	    				while ((temp = br.readLine()) != null)
+	    					sb.append(temp);
+	    			} catch (IOException e) {
+	    				e.printStackTrace();
+	    			} finally {
+	    				try {
+	    					br.close(); // stop reading
+	    				} catch (IOException e) {
+	    					e.printStackTrace();
+	    				}
+	    			}
+	    			String myjsonstring = sb.toString();
+	    			System.out.println("test seb"+myjsonstring);
+	    			
+	    			parseJson(myjsonstring);
+	    }
+	    
+	    public void parseJson(String myjsonstring){
+	    	// Try to parse JSON
+	    			try {
+
+	    				// Creating JSONObject from String
+	    				JSONObject jsonObjMain = new JSONObject(myjsonstring);
+
+	    				// Creating JSONArray from JSONObject
+	    				String latitude = jsonObjMain.getJSONObject("location").getString("latitude");
+	    				String longitude = jsonObjMain.getJSONObject("location").getString("longitude");
+	    				System.out.println(latitude);
+	    			} catch (JSONException e) {
+	    				// TODO Auto-generated catch block
+	    				e.printStackTrace();
+	    			}
+
+	    		
+	    }
+}

@@ -1,0 +1,16 @@
+package com.example.rekrutacjaredexperts;
+
+import java.io.IOException;
+
+public class HttpDownloader {
+ 
+    public static void main(String[] args) {
+        String fileURL = "https://dl.dropboxusercontent.com/u/6556265/test.json";
+        String saveDir = "E:/Download";
+        try {
+            MainActivity.downloadFile(fileURL, saveDir);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+}

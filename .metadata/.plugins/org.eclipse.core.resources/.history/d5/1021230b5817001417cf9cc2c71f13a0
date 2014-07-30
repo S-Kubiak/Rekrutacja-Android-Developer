@@ -1,0 +1,9 @@
+package com.example.rekrutacjaredexperts;
+
+import android.os.AsyncTask;
+
+public class WebImage extends AsyncTask<Params, Progress, Result> {
+
+	
+
+}

@@ -1,0 +1,12 @@
+package com.example.rekrutacjaredexperts.file;
+
+import android.content.Context;
+
+public class FileManager {
+	Context context = null;
+	public FileManager(Context applicationContext) {
+		this.context = applicationContext;
+	}
+
+	
+}

@@ -1,0 +1,7 @@
+import android.graphics.Bitmap;
+ 
+public class Data
+{
+    public static Bitmap StoreImg;
+ 
+}

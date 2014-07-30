@@ -1,0 +1,91 @@
+package com.example.rekrutacjaredexperts.json;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.os.Environment;
+
+public class JsonManager {
+	String latitude;
+	String longitude;
+	String sampleText;
+	String imageUrl;
+	private static JsonManager singletonInstance;
+		 
+	    // SingletonExample prevents any other class from instantiating
+	    private JsonManager() {
+	    }
+	 
+	    // Providing Global point of access
+	    public static JsonManager getSingletonInstance() {
+	        if (null == singletonInstance) {
+	            singletonInstance = new JsonManager();
+	        }
+	        return singletonInstance;
+	    }
+	
+	 public void readJson(){
+	    	// Reading text file from assets folder
+	    			StringBuffer sb = new StringBuffer();
+	    			BufferedReader br = null;
+	    			try {
+	    				
+	    				InputStream some = new FileInputStream(Environment.getExternalStorageDirectory().toString()+"/Download/test.json");
+	    				br = new BufferedReader(new InputStreamReader(some));
+	    				String temp;
+	    				while ((temp = br.readLine()) != null)
+	    					sb.append(temp);
+	    			} catch (IOException e) {
+	    				e.printStackTrace();
+	    			} finally {
+	    				try {
+	    					br.close(); // stop reading
+	    				} catch (IOException e) {
+	    					e.printStackTrace();
+	    				}
+	    			}
+	    			String myjsonstring = sb.toString();
+	    			System.out.println("test seb"+myjsonstring);
+	    			
+	    			parseJson(myjsonstring);
+	    }
+	    
+	    public void parseJson(String myjsonstring){
+	    	// Try to parse JSON
+	    			try {
+
+	    				// Creating JSONObject from String
+	    				JSONObject jsonObjMain = new JSONObject(myjsonstring);
+
+	    				// Creating JSONArray from JSONObject
+	    				latitude = jsonObjMain.getJSONObject("location").getString("latitude");
+	    				longitude = jsonObjMain.getJSONObject("location").getString("longitude");
+	    				sampleText = (String) jsonObjMain.get("text");
+	    				imageUrl = (String) jsonObjMain.get("image");
+	    				System.out.println(latitude);
+	    			} catch (JSONException e) {
+	    				// TODO Auto-generated catch block
+	    				e.printStackTrace();
+	    			}
+
+	    		
+	    }
+	    
+	    public String getLatitude(){
+	    	return latitude;
+	    }
+	    
+	    public String getLongitude(){
+	    	return longitude;
+	    }
+	    
+	    public String getSampleText(){
+	    	return sampleText;
+	    }
+}

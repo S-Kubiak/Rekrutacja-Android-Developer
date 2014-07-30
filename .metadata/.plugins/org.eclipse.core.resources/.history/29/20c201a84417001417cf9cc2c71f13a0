@@ -1,0 +1,27 @@
+private class CustomInfoWindowAdapter implements InfoWindowAdapter {
+		LayoutInflater inflater=null;
+		
+		CustomInfoWindowAdapter(LayoutInflater inflater) {
+		    this.inflater=inflater;
+		  }
+		
+		@Override
+		public View getInfoContents(Marker marker) {
+			View popup=inflater.inflate(R.layout.custom_info_window, null);
+
+		    TextView tv=(TextView)popup.findViewById(R.id.title);
+
+		    tv.setText(marker.getTitle());
+		    tv=(TextView)popup.findViewById(R.id.snippet);
+		    tv.setText(marker.getSnippet());
+
+		    return(popup);
+		}
+
+		@Override
+		public View getInfoWindow(Marker arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		
+	}

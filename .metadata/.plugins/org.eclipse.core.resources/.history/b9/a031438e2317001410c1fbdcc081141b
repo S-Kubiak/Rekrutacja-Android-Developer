@@ -1,0 +1,40 @@
+package com.example.rekrutacjaredexperts.file;
+
+import java.io.IOException;
+
+import android.content.Context;
+import android.os.Environment;
+
+public class FileManager {
+	Context context = null;
+	public FileManager(Context applicationContext) {
+		this.context = applicationContext;
+	}
+
+	private void startDownload() {
+    	Thread thread = new Thread(new Runnable(){
+    	    @Override
+    	    public void run() {
+    	        try {
+    	            
+
+    	    		// TODO Auto-generated method stub
+    	        	String fileURL = "https://dl.dropboxusercontent.com/u/6556265/test.json";
+    	            saveDir = Environment.getExternalStorageDirectory().toString()+"/Download";
+    	            
+    	            
+    	            try {
+    	               downloadFile(fileURL, saveDir);
+    	            } catch (IOException ex) {
+    	                ex.printStackTrace();
+    	            }
+    	        	
+    	        } catch (Exception e) {
+    	            e.printStackTrace();
+    	        }
+    	    }
+    	});
+
+    	thread.start(); 
+	}
+}

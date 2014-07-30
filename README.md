@@ -1,7 +1,7 @@
 Rekrutacja-Android-Developer
 ============================
 Aby uruchomić aplikację po uprzednim zaimportowaniu jej należy z poziomu eclipse: <br>
-•	Zaznaczyć projekt  RekrutacjaRedExperts <br>
+•	Zaznaczyć projekt  RekrutacjaRedexperts <br>
 •	Użyć skrótu Alt+Enter <br>
 •	Wybrać zakładke Android <br>
 •	Usunąć  android-support-v7-appcompat  jeśli zostało oznaczone za pomocą czerwonego znaku "x" <br>
